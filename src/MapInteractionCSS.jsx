@@ -6,6 +6,8 @@ import MapInteraction from './MapInteraction';
   the user zoom and pan the children by scaling and translating props.children using css.
 */
 const MapInteractionCSS = (props) => {
+  const touchAction = disableSingleTouchPan ? 'pan-y pan-x' : 'none';
+
   return (
     <MapInteraction {...props}>
       {
@@ -19,8 +21,8 @@ const MapInteractionCSS = (props) => {
                 width: '100%',
                 position: 'relative', // for absolutely positioned children
                 overflow: 'hidden',
-                touchAction: 'none', // Not supported in Safari :(
-                msTouchAction: 'none',
+                touchAction, // Not supported in Safari :(
+                msTouchAction: touchAction,
                 cursor: 'all-scroll',
                 WebkitUserSelect: 'none',
                 MozUserSelect: 'none',
